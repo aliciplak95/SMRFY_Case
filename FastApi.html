@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <title>Test</title>
+    <style>
+      body {
+        background-color: #000000;
+        height: 100vh;
+      }
+      .container {
+        height: 100vh;
+        background-image: url("./logo.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .container .form-group label {
+        color: #ffffff;
+      }
+      .alert {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container pt-3">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Metni Giriniz</label>
+        <textarea class="form-control" id="message" rows="3"></textarea>
+      </div>
+      <button type="button" class="btn btn-primary" id="send-btn">
+        Gönder
+      </button>
+      <div
+        class="alert alert-success mt-2"
+        role="alert"
+        id="message-response"
+      ></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        var message = $(document).find("#message");
+        var messageResponse = $(document).find("#message-response");
+
+        $(document)
+          .find("#send-btn")
+          .click(function () {
+            $(messageResponse).hide();
+            $.ajax({
+              type: "POST",
+              url: "http://localhost:8000/items",
+              data: JSON.stringify({ message: $(message).val() }),
+              success: function (response) {
+                $(messageResponse).text(response).show();
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+              },
+            });
+          });
+      });
+    </script>
+  </body>
+</html>
