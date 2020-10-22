@@ -8,5 +8,5 @@
 Ön işleme sürecinde yukarıda da tanımlanan veri setinin token süreci berttokenizer kütüphanesi kullanılarak ve https://s3.amazonaws.com/models.huggingface.co/bert/dbmdz/bert-base-turkish-128k-uncased/vocab.txt 'dan alınan kelime örneklerine göre tamamlanmıştır. Token işleminin ardından verilerin kategori bölümü dummmy kütüphanesi kullanılarak 0 ve 1 cinsinden ifade edilebilecek hale getirilmiştir.Ardından eğitime hazır hale gelen veri seti 3 epoch boyunca sinir ağından geçirilmiştir. Eğitim sürecinde Google'ın hizmete sunduğu Colab kullanılmıştır. Eğitimde kullanılan ekran kartı TESLA T40 modelidir. Eğitim bu ekran kartı ile ortalama 4 saatte tamamlanmıştır. Eğitim süreci tamamlanan modelin skorları aşağıda gösterilmektedir.
 
 ![loss/epoch](https://github.com/aliciplak95/summarify_case/blob/master/Test/lossepoch.png)
-![Precision/Recall/F1score](https://github.com/aliciplak95/summarify_case/blob/master/Test/lossepoch.png) 
+![Precision/Recall/F1score](https://github.com/aliciplak95/summarify_case/blob/master/Test/precisionrecallf1score.png) 
 
